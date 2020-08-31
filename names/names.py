@@ -13,10 +13,32 @@ f.close()
 duplicates = []  # Return the list of duplicates in this data structure
 
 # Replace the nested for loops below with your improvements
+'''
 for name_1 in names_1:
     for name_2 in names_2:
         if name_1 == name_2:
             duplicates.append(name_1)
+'''
+name_counts = {}
+
+
+def add_name(d, name):
+    if d.get(name):
+        d[name] += 1
+    else:
+        d[name] = 1
+
+
+for name in names_1:
+    add_name(name_counts, name)
+
+for name in names_2:
+    add_name(name_counts, name)
+
+for key, value in name_counts.items():
+    if value > 1:
+        duplicates.append(key)
+
 
 end_time = time.time()
 print (f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
